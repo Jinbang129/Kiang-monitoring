@@ -26,12 +26,13 @@ from object_detection.core import anchor_generator
 from object_detection.core import box_list
 from object_detection.utils import ops
 
+print('RUN-grid_anchor_generator********************\n')
 
 class GridAnchorGenerator(anchor_generator.AnchorGenerator):
   """Generates a grid of anchors at given scales and aspect ratios."""
 
   def __init__(self,
-               scales=(0.5, 1.0, 2.0),
+               scales=(0.5, 1.0, 2.0),   #scales=(0.5, 1.0, 2.0), #revised by Jinbang
                aspect_ratios=(0.5, 1.0, 2.0),
                base_anchor_size=None,
                anchor_stride=None,
@@ -55,10 +56,10 @@ class GridAnchorGenerator(anchor_generator.AnchorGenerator):
     """
     # Handle argument defaults
     if base_anchor_size is None:
-      base_anchor_size = [256, 256]
+      base_anchor_size = [32, 32]     #base_anchor_size = [256, 256] #revised by Jinbang
     base_anchor_size = tf.to_float(tf.convert_to_tensor(base_anchor_size))
     if anchor_stride is None:
-      anchor_stride = [16, 16]
+      anchor_stride = [2, 2]          #anchor_stride = [16, 16] #revised by Jinbang
     anchor_stride = tf.to_float(tf.convert_to_tensor(anchor_stride))
     if anchor_offset is None:
       anchor_offset = [0, 0]
